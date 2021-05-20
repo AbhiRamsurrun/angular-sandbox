@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {environment} from '../../../environments/environment'
 @Component({
   selector: 'app-helloworld',
   templateUrl: './helloworld.component.html',
@@ -10,9 +10,13 @@ export class HelloworldComponent implements OnInit {
   name = 'abhi';
   result:number;
   title:string ="I am a title";
+
+  
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(environment.test);
+  }
 
   getInputName(username: string) {
     this.name = username;
@@ -23,3 +27,4 @@ export class HelloworldComponent implements OnInit {
     this.result = parseInt(num1) + parseInt(num2);
   }
 }
+
