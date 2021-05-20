@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-sandbox';
+  title = 'angular-sandbox test';
+  sum = 2 + 3;
 }
