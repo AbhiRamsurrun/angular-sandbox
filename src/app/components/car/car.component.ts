@@ -16,6 +16,7 @@ export class CarComponent implements OnInit {
     public dataService: DataService,
     public storageService: StorageService) {
   }
+  tableView = false;
 
   ngOnInit(): void {
     this.carList == undefined ? this.dataService.seedCars() : null;
@@ -27,6 +28,9 @@ export class CarComponent implements OnInit {
     //this.storageService.set("Cars", this.carList);
   }
 
+  toggleView(){
+    this.tableView= !this.tableView;
+  }
   set carList(value){
     this.storageService.set("Cars", value);
   }

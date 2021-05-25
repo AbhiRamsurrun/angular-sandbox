@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HelloworldComponent } from './components/helloworld/helloworld.component';
 import { CarComponent } from './components/car/car.component';
+import { NavComponent } from './components/shared/nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HelloworldComponent,
-    CarComponent
+    CarComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
