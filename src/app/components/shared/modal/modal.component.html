@@ -1,0 +1,20 @@
+<!-- <p>modal works! {{whatsUp}}</p> -->
+<button class="btn btn-light btn-sm" (click)="openModal(modalTemplate)"><i class="fa fa-eye"></i></button>
+
+<ng-template #modalTemplate>
+    <div class="modal-header">
+        <h5 class="modal-title">{{carDetails.name}}</h5>
+        <button type="button" class="close pull-right" aria-label="Close"
+         (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h3>Description: {{carDetails.desc_excerpt}}</h3>
+        <h3>Price: {{carDetails.currency}} {{carDetails.price}} </h3>
+        <p class="text-right mb-0"><small class="text-muted">Email: <i class="fa fa-envelope mr-2"></i>
+                {{carDetails.contact_email}} </small></p>
+        <p class="text-right"><small class="text-muted">Phone: <i class="fa fa-phone mr-2"></i>
+                {{carDetails.contact_phone}}</small></p>
+    </div>
+</ng-template>

@@ -1,20 +1,37 @@
 <div class="container">
-
+  <div class="card my-s">
+    <div class="card-body">
+      <div class="input-group mb-3">
+        <span class="input-group-text" (click)="search()"><i class="fa fa-search"></i></span>
+        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="searchText" (keyup)="search()">
+        <span class="input-group-text" (click)="clearSearch()"><i class="fa fa-times"></i></span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-modal [whatsUp]="toModal"></app-modal> -->
+<div class="container">
   <div class="row my-2">
     <div class="col text-end">
       <div class="btn btn-primary btn-sm" (click)="toggleView()">
         <i class="fa fa-th me-2"></i>
-        Toggle View</div>
+        Toggle View
+      </div>
     </div>
   </div>
 
   <div *ngIf="!tableView">
     <div class="row">
-      <div class="col-4 mb-3" *ngFor="let c of carList;">
-        <div class="card">
-          <img [src]="c.image_car" class="card-img-top" alt="{{c.name}}">
+      <div class="col-4 mb-3" *ngFor="let c of filterCarList;let i = index ">
+        <div class="card" [ngClass]="{'bg-dark text-light':!((i+ 1)%2)}">
+          <img [src]="c.image_car" [tooltip]="carPrice" class="card-img-top" alt="{{c.name}}">
           <div class="card-body">
-            <h5 class="card-title">{{c.name}}</h5>
+            <ng-template #carPrice>
+              <div class="text-success">{{c.price}}</div>
+            </ng-template>
+            <h5 class="card-title" >{{c.name}}
+              <app-modal [carDetails]="c"></app-modal>
+            </h5>
             <p class="card-text">{{c.desc_excerpt}}</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
@@ -35,12 +52,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let c of carList; let i=index">
+        <tr *ngFor="let c of filterCarList; let i=index">
           <th scope="row">{{i + 1}}</th>
           <td>{{c.name}}</td>
           <td>{{c.body_type}}</td>
           <td>{{c.price}}</td>
-          <td><button class="btn btn-danger btn-sm" (click)="deleteCar(c.ref)">Delete</button></td>
+          <td><button class="btn btn-danger btn-sm me-2" (click)="deleteCar(c.ref)">Delete</button>
+             <app-modal [carDetails]="c"></app-modal></td>
         </tr>
       </tbody>
     </table>
