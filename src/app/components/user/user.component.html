@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <p>Settings</p>
+                </div>
+                <div class="col">
+                    <select class="form-control" #theme (change)="updateTheme(theme.value)">
+                        <option value="">Select...</option>
+                        <option value="dark">Dark</option>
+                        <option value="light">Light</option>
+                        <option value="danger">Danger</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

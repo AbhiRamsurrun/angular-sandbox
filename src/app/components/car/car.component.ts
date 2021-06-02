@@ -76,9 +76,7 @@ export class CarComponent implements OnInit {
   arrayReducer(){
     let obj = { key : "value" }
 
-    console.log("Replace1",obj.find("key"));
-    console.log("Replace2",obj["key"]);
-  
+
 
     const myArray = [1, 2, 3, 4, 5];
     const reducer= myArray.reduce((accumulator,currentValue)=> accumulator + currentValue);
@@ -93,6 +91,5 @@ export class CarComponent implements OnInit {
     console.log("Replace",final);
 
 
-    //console.log("Replace",obj.find("key"));
   }
 }
