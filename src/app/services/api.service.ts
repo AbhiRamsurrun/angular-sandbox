@@ -13,7 +13,9 @@ export class ApiService {
     carList: `${this.baseUrl}car/list`,
     addCar: `${this.baseUrl}car/add-car`,
     signIn: `${this.baseUrl}user/signin`,
-    carDetails: (slug)=> `${this.baseUrl}car/${slug}`
+    carDetails: (slug)=> `${this.baseUrl}car/${slug}`,
+    editCar: (slug) => `${this.baseUrl}car/edit/${slug}`
+
   };
 
   getCarList() {
@@ -36,4 +38,4 @@ export class ApiService {
 }
 
 
-export type endPointType = "carList" | "addCar" | "signIn" |"carDetails";
+export type endPointType = "carList" | "addCar" | "signIn" |"carDetails" | "editCar";

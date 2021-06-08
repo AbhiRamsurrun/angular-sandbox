@@ -241,8 +241,10 @@
                 <div class="col-sm-12 text-end">
                     <button *ngIf="!carSlug" class="btn btn-success" (click)="addCar()" [disabled]="carForm.invalid"><i
                             class="fa fa-plus me-2"></i>Add</button>
-                    <button *ngIf="carSlug" class="btn btn-success" (click)="addCar()" [disabled]="carForm.invalid"><i
-                            class="fa fa-pencil me-2"></i>Edit</button>
+                    <button class="btn btn-success" (click)="editCar()" [disabled]="carForm.invalid" *ngIf="carSlug">
+                        <i class="fa fa-pencil me-2"></i>
+                        Edit
+                    </button>
                     <button class="btn btn-danger ms-3" [routerLink]="['/car/']"><i
                             class="fa fa-times me-2"></i>Cancel</button>
                 </div>
