@@ -16,6 +16,9 @@ const routes: Routes = [{
 },
 {
   path: 'car/add', component: CarFormComponent
+},
+{
+  path: 'car/edit/:slug', component: CarFormComponent
 }];
 
 @NgModule({

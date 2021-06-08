@@ -5,6 +5,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { HelloworldComponent } from './components/helloworld/helloworld.component';
 import { CarComponent } from './components/car/car.component';
@@ -12,6 +13,7 @@ import { NavComponent } from './components/shared/nav/nav.component';
 import { ModalComponent } from './components/shared/modal/modal.component';
 import { UserComponent } from './components/user/user.component';
 import { CarFormComponent } from './components/car/car-form/car-form.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 
 @NgModule({
@@ -22,7 +24,7 @@ import { CarFormComponent } from './components/car/car-form/car-form.component';
     NavComponent,
     ModalComponent,
     UserComponent,
-    CarFormComponent    
+    CarFormComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +32,12 @@ import { CarFormComponent } from './components/car/car-form/car-form.component';
     FormsModule,
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

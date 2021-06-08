@@ -3,7 +3,8 @@
     <div class="card-body">
       <div class="input-group mb-3">
         <span class="input-group-text" (click)="search()"><i class="fa fa-search"></i></span>
-        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="searchText" (keyup)="search()">
+        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" [(ngModel)]="searchText"
+          (keyup)="search()">
         <span class="input-group-text" (click)="clearSearch()"><i class="fa fa-times"></i></span>
       </div>
     </div>
@@ -32,7 +33,7 @@
             <ng-template #carPrice>
               <div class="text-success">{{c.price}}</div>
             </ng-template>
-            <h5 class="card-title" >{{c.name}}
+            <h5 class="card-title">{{c.name}}
               <app-modal [carDetails]="c"></app-modal>
             </h5>
             <p class="card-text">{{c.desc_excerpt}}</p>
@@ -61,7 +62,9 @@
           <td>{{c.body_type}}</td>
           <td>{{c.price}}</td>
           <td><button class="btn btn-danger btn-sm me-2" (click)="deleteCar(c.ref)">Delete</button>
-             <app-modal [carDetails]="c"></app-modal></td>
+            <app-modal [carDetails]="c"></app-modal>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/car/edit/',c.slug]" [tooltip]="'Edit'"><i class="fa fa-pencil me-2"></i></button>
+          </td>
         </tr>
       </tbody>
     </table>
