@@ -16,6 +16,7 @@ export class CarFormComponent implements OnInit {
   carForm: FormGroup;
   carList: Car[];
   carSlug = '';
+  carDetails: Car;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -60,6 +61,7 @@ export class CarFormComponent implements OnInit {
         result => {
           console.log("Res", result);
           this.carForm.patchValue(result);
+          this.carDetails = result;
         }
       );
     }
@@ -105,5 +107,33 @@ export class CarFormComponent implements OnInit {
         console.error("Issue on edit:", error);
       }
     );
+  }
+
+  uploadImage(event) {
+    console.log("Event", event.target.files[0]);
+    const fileUpload = event.target.files[0];
+    const formData: FormData = new FormData();
+    if (fileUpload) {
+      formData.append('image', fileUpload, fileUpload.name);
+      this.api.request("imageUpload", "post", null, formData).subscribe(r => {
+        console.log("Image upload", r);
+        this.carForm.controls.image_car.setValue(r['url']);
+        this.carDetails.image_car = r['url'];
+      });
+    }
+  }
+
+  uploadFileDirective(event) {
+    console.log("Files details", event);
+    let fileUpload = event[0];
+    const formData: FormData = new FormData();
+    if (fileUpload) {
+      formData.append('image', fileUpload);
+      this.api.request("imageUpload", "post", null, formData).subscribe(r => {
+        console.log("Image upload", r);
+        this.carForm.controls.image_car.setValue(r['url']);
+        this.carDetails.image_car = r['url'];
+      });
+    }
   }
 }

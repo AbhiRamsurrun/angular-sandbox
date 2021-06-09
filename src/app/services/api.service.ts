@@ -13,8 +13,9 @@ export class ApiService {
     carList: `${this.baseUrl}car/list`,
     addCar: `${this.baseUrl}car/add-car`,
     signIn: `${this.baseUrl}user/signin`,
-    carDetails: (slug)=> `${this.baseUrl}car/${slug}`,
-    editCar: (slug) => `${this.baseUrl}car/edit/${slug}`
+    carDetails: (slug) => `${this.baseUrl}car/${slug}`,
+    editCar: (slug) => `${this.baseUrl}car/edit/${slug}`,
+    imageUpload: `${this.baseUrl}car/img-upload`
 
   };
 
@@ -27,7 +28,7 @@ export class ApiService {
   // }
 
   request(url: endPointType, method, urlParams?, payload?) {
-    const requestUrl = (!urlParams)? this.endPoints[url]:this.endPoints[url](urlParams);
+    const requestUrl = (!urlParams) ? this.endPoints[url] : this.endPoints[url](urlParams);
 
     if (!payload) {
       return this.http[method](requestUrl);
@@ -38,4 +39,4 @@ export class ApiService {
 }
 
 
-export type endPointType = "carList" | "addCar" | "signIn" |"carDetails" | "editCar";
+export type endPointType = "carList" | "addCar" | "signIn" | "carDetails" | "editCar" | "imageUpload";

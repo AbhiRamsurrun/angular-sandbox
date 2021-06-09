@@ -16,6 +16,7 @@ import { CarFormComponent } from './components/car/car-form/car-form.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { InterceptorsProviders } from './interceptors/interceptors';
 import { LoadigComponent } from './components/shared/loadig/loadig.component';
+import { UploadDirective } from './directives/upload.directive';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { LoadigComponent } from './components/shared/loadig/loadig.component';
     ModalComponent,
     UserComponent,
     CarFormComponent,
-    LoadigComponent
+    LoadigComponent,
+    UploadDirective
   ],
   imports: [
     BrowserModule,

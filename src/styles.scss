@@ -5,3 +5,18 @@
 .form-group{
     @extend .mb-2;
 }
+
+.card-light{
+    min-height: 40px;
+    min-width: 30%;
+    height: auto;
+
+    &.dotted{
+        border: 2px dashed #eeeeee;
+        padding: 2.8em 6em;
+        background-color: transparent;
+    }
+    @extend .mt-4;
+    @extend .text-center;
+    @extend .text-muted;
+}
