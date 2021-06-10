@@ -21,6 +21,12 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/profile']" routerLinkActive="active">Profile</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/users']" routerLinkActive="active">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/startShip']" routerLinkActive="active">StarShip</a>
+        </li>
       </ul>
       <div *ngIf="loginSuccess">
         <span>{{loginDisplay}}</span>
