@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Name: {{shipDetails?.name}}</h5>
+            <ngContainer *ngFor="let property of shipDetailsKeys;let i = index ">
+                <p [ngClass]="{'fw-bold': property === 'cost_in_credits'}" nclass="card-text"
+                    *ngIf="!blackList.includes(property)">
+                    {{labels[i]}}: {{shipDetails[property]}}
+                </p>
+            </ngContainer>
+        </div>
+    </div>
+</div>

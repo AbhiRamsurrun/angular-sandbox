@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   baseUrl = "https://test-marketplace-api.herokuapp.com/api/";
+  baseStarshipUrl ="https://swapi.dev/api/";
+
   constructor(public http: HttpClient) { }
 
   endPoints: any = {
@@ -15,17 +17,16 @@ export class ApiService {
     signIn: `${this.baseUrl}user/signin`,
     carDetails: (slug) => `${this.baseUrl}car/${slug}`,
     editCar: (slug) => `${this.baseUrl}car/edit/${slug}`,
-    imageUpload: `${this.baseUrl}car/img-upload`
-
+    imageUpload: `${this.baseUrl}car/img-upload`,
+    userList: `${this.baseUrl}user/list`,
+    starShipFilms: `${this.baseStarshipUrl}starships/`,
+    starshipDetails: (id) => `${this.baseStarshipUrl}starships/${id}/`
   };
 
   getCarList() {
     return this.http.get(`${this.baseUrl}car/list`);
   }
 
-  // addCar(carDetail){
-  //   return this.http.post(`${this.baseUrl}car/add-car`,carDetail);
-  // }
 
   request(url: endPointType, method, urlParams?, payload?) {
     const requestUrl = (!urlParams) ? this.endPoints[url] : this.endPoints[url](urlParams);
@@ -39,4 +40,4 @@ export class ApiService {
 }
 
 
-export type endPointType = "carList" | "addCar" | "signIn" | "carDetails" | "editCar" | "imageUpload";
+export type endPointType = "carList" | "addCar" | "signIn" | "carDetails" | "editCar" | "imageUpload" | "userList" | "starShipFilms" | "starshipDetails";
