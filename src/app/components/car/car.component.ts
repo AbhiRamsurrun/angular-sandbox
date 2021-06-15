@@ -27,25 +27,28 @@ export class CarComponent implements OnInit {
     //this.carList == undefined ? this.dataService.seedCars() : null;
     //this.carList = this.storageService.get("Cars");
 
-    
 
-    // if (this.storageService.get("Cars") == undefined || this.storageService.get("Cars").length == 0) {
-    //   this.dataService.seedCars();
-    // }
+
+    if (this.storageService.get("CarsList") == undefined || this.storageService.get("CarsList").length == 0) {
+      this.api.request("carList", "get").subscribe(res => {
+        this.carList = res['data'];
+        this.filterCarList = res['data'];
+        this.storageService.set("CarsList", this.filterCarList);
+      }
+      );
+    }
+    else {
+      this.filterCarList = this.storageService.get("CarsList")
+    }
     // this.filterCarList = this.carList;
     //  this.api.getCarList().subscribe(res=> {
     //    this.carList = res['data'];
     //   this.filterCarList =res['data'];
     //  }
 
-    this.api.request("carList","get").subscribe(res=> {
-         this.carList = res['data'];
-        this.filterCarList =res['data'];
-       }
-      
-    );
-    this.arrayMap();
-    this.arrayReducer();
+
+    // this.arrayMap();
+    // this.arrayReducer();
   }
 
   deleteCar(ref: string) {
@@ -73,7 +76,6 @@ export class CarComponent implements OnInit {
       return;
     }
     this.filterCarList = this.carList;
-    //console.log("Search Text", this.searchText);
   }
 
   clearSearch() {
@@ -84,27 +86,23 @@ export class CarComponent implements OnInit {
   arrayMap() {
     const myArray = [1, 2, 3, 4, 5];
     let mapped = [];
-    mapped= myArray.map(x=>x*x);
-    console.log("Mapped",mapped);
+    mapped = myArray.map(x => x * x);
+
   }
 
-  arrayReducer(){
-    let obj = { key : "value" }
-
-
-
+  arrayReducer() {
+    let obj = { key: "value" }
     const myArray = [1, 2, 3, 4, 5];
-    const reducer= myArray.reduce((accumulator,currentValue)=> accumulator + currentValue);
-    console.log("Reduced",reducer);
-
-    const name="Abhi";
-    const result =name.split("").reverse().join("");
-    console.log("Reverse",result);
-
-    const replace="Test.String,.."
-    const final= replace.split(".").join("a");
-    console.log("Replace",final);
-
-
+    const reducer = myArray.reduce((accumulator, currentValue) => accumulator + currentValue);
+    const name = "Abhi";
+    const result = name.split("").reverse().join("");
+    const replace = "Test.String,.."
+    const final = replace.split(".").join("a");
   }
+
+  ngOnDestroy() {
+    this.storageService.set("CarsList", this.filterCarList);
+    console.log("bye bye car")
+  }
+  
 }

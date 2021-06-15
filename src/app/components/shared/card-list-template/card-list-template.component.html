@@ -5,6 +5,7 @@
                 <img [src]="item.image_car" alt="item.name" class="card-img">
                 <h5 class="card-title">{{item.name}}</h5>
                 <div class="card-text">{{item.desc_excerpt}}</div>
+
             </div>
             <div class="card-body" *ngIf="entity=='Users'">
                 <h5 class="card-title">{{item.first_name}}</h5>
@@ -15,7 +16,8 @@
                     <div class="col-9">
                         <h5 class="card-title">{{item.name}}</h5>
                     </div>
-                    <div class="col-3 text-end"> <button class="btn btn-primary btn-sm" (click)="openStarship(item.url)"><i class="fa fa-pencil"></i></button>
+                    <div class="col-3 text-end"> <button class="btn btn-primary btn-sm"
+                            (click)="openStarship(item.url)"><i class="fa fa-pencil"></i></button>
                     </div>
                 </div>
 
@@ -26,6 +28,10 @@
                         URL: {{ film }}
                     </li>
                 </ul>
+            </div>
+            <div>
+                <span *ngIf="!item.liked" (click)="likeItem(item,list)"><i class="fa fa-heart-o"></i></span>
+                <span *ngIf="item.liked" (click)="unLikeItem(item,list)"><i class="fa fa-heart red"></i></span>
             </div>
         </div>
     </div>

@@ -1,4 +1,6 @@
-export interface Car {
+import { reaction } from "./reaction";
+
+export interface Car extends reaction {
     _id: string;
     ref: string;
     slug: string;
@@ -17,5 +19,5 @@ export interface Car {
     date_offline: string;
     currency: string;
     contact_phone: string;
-    contact_email: string; 
+    contact_email: string;
 }

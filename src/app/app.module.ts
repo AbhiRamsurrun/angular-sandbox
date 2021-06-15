@@ -21,6 +21,7 @@ import { ListComponent } from './components/user/list/list.component';
 import { StarShipListComponent } from './components/starShip/list/list.component';
 import { CardListTemplateComponent } from './components/shared/card-list-template/card-list-template.component';
 import { DetailsComponent } from './components/starship/details/details.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { DetailsComponent } from './components/starship/details/details.componen
     ListComponent,
     CardListTemplateComponent,
     StarShipListComponent,
-    DetailsComponent
+    DetailsComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

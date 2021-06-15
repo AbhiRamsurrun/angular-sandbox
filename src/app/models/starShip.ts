@@ -1,4 +1,6 @@
-export interface starShip {
+import { reaction } from "./reaction";
+
+export interface starShip extends reaction{
     MGLT: string;
     consumables: string;
     cost_in_credits: string;

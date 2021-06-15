@@ -20,7 +20,8 @@ export class ApiService {
     imageUpload: `${this.baseUrl}car/img-upload`,
     userList: `${this.baseUrl}user/list`,
     starShipFilms: `${this.baseStarshipUrl}starships/`,
-    starshipDetails: (id) => `${this.baseStarshipUrl}starships/${id}/`
+    starshipDetails: (id) => `${this.baseStarshipUrl}starships/${id}/`,
+    registration: `${this.baseUrl}user/signup`
   };
 
   getCarList() {
@@ -40,4 +41,4 @@ export class ApiService {
 }
 
 
-export type endPointType = "carList" | "addCar" | "signIn" | "carDetails" | "editCar" | "imageUpload" | "userList" | "starShipFilms" | "starshipDetails";
+export type endPointType = "carList" | "addCar" | "signIn" | "carDetails" | "editCar" | "imageUpload" | "userList" | "starShipFilms" | "starshipDetails" | "registration";

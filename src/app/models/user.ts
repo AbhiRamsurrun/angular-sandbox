@@ -1,4 +1,6 @@
-export interface User {
+import { reaction } from "./reaction";
+
+export interface User extends reaction{
     _id: string,
     email: string,
     first_name: string,
