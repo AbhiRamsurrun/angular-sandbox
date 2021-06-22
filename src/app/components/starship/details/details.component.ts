@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,19 +13,28 @@ export class DetailsComponent implements OnInit {
   shipDetailsKeys;
   blackList = ["name"];
   labels = [];
-
+  shipId;
   constructor(
-    public activatedRoute: ActivatedRoute
-    , public api: ApiService) { }
+    public activatedRoute: ActivatedRoute,
+    public api: ApiService,
+    public router: Router) { }
 
   ngOnInit(): void {
 
-    let shipId = this.activatedRoute.snapshot.paramMap.get("id");
-    this.getShipDetails(shipId);
+    this.shipId = this.activatedRoute.snapshot.paramMap.get("id");
+    this.router.events.subscribe(res => {
+      if (res instanceof NavigationEnd) {
+        const id = res['url'].split('/')[2];
+        this.shipId = id;
+        console.log("Id", id);
+        this.getShipDetails();
+      }
+    });
+    this.getShipDetails();
   }
 
-  getShipDetails(shipId) {
-    this.api.request('starshipDetails', 'get', shipId, null).subscribe(res => {
+  getShipDetails() {
+    this.api.request('starshipDetails', 'get', this.shipId, null).subscribe(res => {
       this.shipDetails = res;
       this.shipDetailsKeys = Object.keys(this.shipDetails);
       this.labels = this.shipDetailsKeys.map(a => this.capitalize(a.replace(/_/g, " ")));
