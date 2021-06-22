@@ -2,7 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
-import { StorageService } from 'src/app/services/storage.service';
+import { PermissionService } from '../../../services/permission.service';
+import { StorageService } from '../../../services/storage.service';
 import { SettingsService } from '../../../services/settings.service';
 
 @Component({
@@ -14,14 +15,15 @@ export class NavComponent implements OnInit {
 
   currentTheme = "light";
   loginForm: FormGroup;
-  loginDisplay="";
-  loginSuccess= false;
+  loginDisplay = "";
+  loginSuccess = false;
 
   constructor(
     public setting: SettingsService,
     public formBuilder: FormBuilder,
     public api: ApiService,
-    public storageService: StorageService) { }
+    public storageService: StorageService,
+    public permission: PermissionService) { }
 
   ngOnInit(): void {
 
@@ -33,25 +35,32 @@ export class NavComponent implements OnInit {
     if (this.setting.theme != undefined) {
       this.currentTheme = this.setting.theme;
     }
+
+    let user = this.storageService.get("user");
+    if (user) {
+      this.loginSuccess = true;
+      this.loginDisplay = 'Welcome ' + user['first_name'] + ' ' + user['last_name'];
+    }
+
     this.setting.outsetTheme.subscribe(result => {
       console.log("Nav bar", result);
       this.currentTheme = result;
     });
   }
 
-  login( ) {
-    this.api.request("signIn", "post", null, this.loginForm.value).subscribe(result=>{
+  login() {
+    this.api.request("signIn", "post", null, this.loginForm.value).subscribe(result => {
       console.log("Result", result);
       let user = result['user'];
-      this.loginSuccess= true;
-      this.loginDisplay= 'Welcome ' + user['first_name'] +' '+  user['last_name'];
-      
+      this.loginSuccess = true;
+      this.loginDisplay = 'Welcome ' + user['first_name'] + ' ' + user['last_name'];
+
       this.storageService.set("user", result['user']);
       this.storageService.set("token", result['token']);
     });
   }
 
-  logout(){
-    this.loginSuccess= false;
+  logout() {
+    this.loginSuccess = false;
   }
 }

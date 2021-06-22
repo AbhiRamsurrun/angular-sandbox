@@ -1,3 +1,10 @@
 <div class="container">
-    <card-list-template *ngIf="starShips" [list]="starShips" [entity]="'starShip'"></card-list-template>
+    <div class="row">
+        <div class="col-8">
+            <card-list-template *ngIf="starShips" [list]="starShips" [entity]="'starShip'"></card-list-template>
+        </div>
+        <div class="col-4">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>

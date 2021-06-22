@@ -15,10 +15,10 @@ export class StarShipListComponent implements OnInit {
     public storageService: StorageService) { }
 
   ngOnInit(): void {
-    this.getFilms();
+    this.geStarships();
   }
 
-  getFilms() {
+  geStarships() {
     if (this.storageService.get("starShipFilms") == undefined || this.storageService.get("starShipFilms").length == 0) {
       this.api.request('starShipFilms', 'get', null, null).subscribe(res => {
         console.log("StartShips b", res);

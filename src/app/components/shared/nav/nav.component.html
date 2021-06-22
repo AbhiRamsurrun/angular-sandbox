@@ -28,10 +28,11 @@
           <a class="nav-link" [routerLink]="['/startShip']" routerLinkActive="active">StarShip</a>
         </li>
       </ul>
-      <div *ngIf="loginSuccess">
-        <span>{{loginDisplay}}</span>
-        <button class="btn" (click)="logout()"><i
-          class="fa fa-power-off me-2"></i></button>
+      <div class="logout" *ngIf="loginSuccess">
+        <span>{{loginDisplay}}
+          <i *ngIf="permission.hasRole('admin')" class="fa fa-star text-warning"></i>
+        </span>
+        <button class="btn" (click)="logout()"><i class="fa fa-power-off me-2"></i></button>
       </div>
 
       <form class="d-flex" [formGroup]="loginForm" *ngIf="!loginSuccess">

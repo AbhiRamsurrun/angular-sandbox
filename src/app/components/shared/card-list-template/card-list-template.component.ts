@@ -19,9 +19,6 @@ export class CardListTemplateComponent implements OnInit {
 
   }
 
-
-
-
   ngOnInit(): void {
     console.log("List", this.list)
     console.log("Entity", this.entity);
@@ -31,7 +28,7 @@ export class CardListTemplateComponent implements OnInit {
     console.log("URL", url);
     const splitShipId = url.split("/");
     const id = splitShipId[5];
-    this.router.navigate(['startShip/details/', id]);
+    this.router.navigate(['startShip/', id]);
   }
 
   getReactionFromService(itemName){
