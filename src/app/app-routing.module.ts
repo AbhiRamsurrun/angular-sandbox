@@ -8,18 +8,27 @@ import { StarShipListComponent } from './components/starship/list/list.component
 import { UserComponent } from './components/user/user.component';
 import { DetailsComponent } from './components/starship/details/details.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
-  { path: 'hello', component: HelloworldComponent },
+  {
+    path: 'hello', component: HelloworldComponent, canActivate: [RoleGuard], data: {
+      role: 'admin'
+    }
+  },
   { path: 'car', component: CarComponent },
   { path: 'profile', component: UserComponent },
-  { path: 'car/add', component: CarFormComponent },
-  { path: 'car/edit/:slug', component: CarFormComponent },
+  { path: 'car/add', component: CarFormComponent, canActivate: [AuthGuard] },
+  { path: 'car/edit/:slug', component: CarFormComponent, canActivate: [AuthGuard] },
   { path: 'users', component: ListComponent },
-  { path: 'startShip', component: StarShipListComponent,
+  { path: 'users/:id', component: RegistrationComponent, canActivate: [AuthGuard]},
+  {
+    path: 'startShip', component: StarShipListComponent,
     children: [
-      { path: ':id', component: DetailsComponent }
-    ]},
+      { path: ':id', component: DetailsComponent, canActivate: [RoleGuard], data:{role: 'admin' } }
+    ]
+  },
   { path: 'signUp', component: RegistrationComponent }];
 
 @NgModule({

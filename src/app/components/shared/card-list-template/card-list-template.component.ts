@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { StorageService } from 'src/app/services/storage.service';
+import { PermissionService } from '../../../services/permission.service';
+import { StorageService } from '../../../services/storage.service';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -15,13 +16,18 @@ export class CardListTemplateComponent implements OnInit {
 
   constructor(
     public router: Router,
-    public storageService: StorageService) {
-
+    public storageService: StorageService,
+    public permission : PermissionService) {
   }
 
   ngOnInit(): void {
     console.log("List", this.list)
     console.log("Entity", this.entity);
+  }
+
+  editUser(userId){
+    console.log("User ID",userId);
+    this.router.navigate(['/users', userId]);
   }
 
   openStarship(url) {
@@ -33,7 +39,6 @@ export class CardListTemplateComponent implements OnInit {
 
   getReactionFromService(itemName){
     return this.storageService.get(itemName);
-    // 
   }
 
   unLikeItem(item) {

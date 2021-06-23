@@ -1,10 +1,10 @@
-import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { PermissionService } from '../../../services/permission.service';
 import { StorageService } from '../../../services/storage.service';
 import { SettingsService } from '../../../services/settings.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -23,7 +23,8 @@ export class NavComponent implements OnInit {
     public formBuilder: FormBuilder,
     public api: ApiService,
     public storageService: StorageService,
-    public permission: PermissionService) { }
+    public permission: PermissionService,
+    public router : Router) { }
 
   ngOnInit(): void {
 
@@ -57,10 +58,13 @@ export class NavComponent implements OnInit {
 
       this.storageService.set("user", result['user']);
       this.storageService.set("token", result['token']);
+      this.router.navigate(['/car']);
     });
   }
 
   logout() {
     this.loginSuccess = false;
+    this.storageService.remove("user");
+    this.storageService.remove("token");
   }
 }

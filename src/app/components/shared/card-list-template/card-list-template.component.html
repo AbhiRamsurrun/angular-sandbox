@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="card col-3 mb-2" *ngFor="let item of list">
+        <div class="card col-3 mb-2" *ngFor="let item of list" [ngClass]="{'col-4': entity=='Ships'}">
             <div class="card-body" *ngIf="entity=='Cars'">
                 <img [src]="item.image_car" alt="item.name" class="card-img">
                 <h5 class="card-title">{{item.name}}</h5>
@@ -8,8 +8,17 @@
 
             </div>
             <div class="card-body" *ngIf="entity=='Users'">
-                <h5 class="card-title">{{item.first_name}}</h5>
-                <div class="card-text">{{item.last_name}}</div>
+                <div class="row">
+                    <div class="col-9">
+                        <h5 class="card-title"> {{ item.first_name }} {{ item.last_name }}</h5> 
+                    </div>
+                    <div class="col-1 text-end" *ngIf="permission.hasRole('admin') || permission.currentUser(item?._id)">
+                        <button class="btn btn-success btn-sm" (click)="editUser(item._id)"  >
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </div>
+                </div>
+
             </div>
             <div class="card-body" *ngIf="entity=='starShip'">
                 <div class="row">

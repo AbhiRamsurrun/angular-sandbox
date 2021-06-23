@@ -14,4 +14,9 @@ export class PermissionService {
     const userStorageObject = this.storageService.get("user");
     return userStorageObject?.role == role;
   }
+  currentUser(id){
+    const userId  = this.storageService.get('user')?._id;
+    console.log("permission:", userId);
+    return userId == id;
+  }
 }

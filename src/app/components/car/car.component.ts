@@ -22,13 +22,9 @@ export class CarComponent implements OnInit {
   searchText: string;
   filterCarList;
   toModal = "Vat 18%";
+  showAddCarButton: boolean = false;
 
   ngOnInit(): void {
-    //this.carList == undefined ? this.dataService.seedCars() : null;
-    //this.carList = this.storageService.get("Cars");
-
-
-
     if (this.storageService.get("CarsList") == undefined || this.storageService.get("CarsList").length == 0) {
       this.api.request("carList", "get").subscribe(res => {
         this.carList = res['data'];
@@ -49,8 +45,15 @@ export class CarComponent implements OnInit {
 
     // this.arrayMap();
     // this.arrayReducer();
+    this.showAddCar();
   }
 
+  showAddCar(){
+    if(this.storageService.get("user")) {
+      this.showAddCarButton = true;
+    }
+  }
+  
   deleteCar(ref: string) {
     this.carList = this.carList.filter(c => c.ref != ref);
     //this.storageService.set("Cars", this.carList);

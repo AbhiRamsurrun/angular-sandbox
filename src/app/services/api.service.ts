@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   baseUrl = "https://test-marketplace-api.herokuapp.com/api/";
-  baseStarshipUrl ="https://swapi.dev/api/";
+  baseStarshipUrl = "https://swapi.dev/api/";
 
   constructor(public http: HttpClient) { }
 
@@ -21,7 +21,8 @@ export class ApiService {
     userList: `${this.baseUrl}user/list`,
     starShipFilms: `${this.baseStarshipUrl}starships/`,
     starshipDetails: (id) => `${this.baseStarshipUrl}starships/${id}/`,
-    registration: `${this.baseUrl}user/signup`
+    registration: `${this.baseUrl}user/signup`,
+    editUser: (id) => `${this.baseUrl}user/edit/${id}`
   };
 
   getCarList() {
@@ -40,5 +41,4 @@ export class ApiService {
   }
 }
 
-
-export type endPointType = "carList" | "addCar" | "signIn" | "carDetails" | "editCar" | "imageUpload" | "userList" | "starShipFilms" | "starshipDetails" | "registration";
+export type endPointType = "carList" | "addCar" | "signIn" | "carDetails" | "editCar" | "imageUpload" | "userList" | "starShipFilms" | "starshipDetails" | "registration" | "editUser";
