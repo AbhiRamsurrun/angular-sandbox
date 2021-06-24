@@ -25,7 +25,10 @@
           <a class="nav-link" [routerLink]="['/users']" routerLinkActive="active">Users</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/startShip']" routerLinkActive="active">StarShip</a>
+          <a class="nav-link" [routerLink]="['/starShip']" routerLinkActive="active">StarShip</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/chat']" routerLinkActive="active">Chat</a>
         </li>
         <li class="nav-item"  *ngIf="!loginSuccess">
           <a class="nav-link" [routerLink]="['/signup']" routerLinkActive = "active" >Signup</a>

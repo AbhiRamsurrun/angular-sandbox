@@ -1,0 +1,13 @@
+<div *ngFor="let msg of messages">
+    <div [ngStyle] = "{'background-color': msg.backgroundColor, 'color':msg.color}">{{msg.user}}:{{msg.message}}</div>
+</div>
+
+<input type="text" [(ngModel)]="message">
+<button (click)="sendMessage()">Send</button>
+
+<hr>
+<ul>
+    <li *ngFor="let item of list$ | async">
+        <div [ngStyle] = "{'background-color': item.backgroundColor, 'color':item.color}">{{item.user}}:{{item.message}}</div>
+    </li>
+</ul>

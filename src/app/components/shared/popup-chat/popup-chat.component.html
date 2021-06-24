@@ -1,0 +1,19 @@
+<button class="open-button" (click)="openForm()">Chat</button>
+
+<div class="chat-popup" [ngStyle]="{'display': bntStyle}">
+    <form action="/action_page.php" class="form-container">
+        <h1>Chat</h1>
+
+        <label for="msg"><b>Message</b></label>
+
+        <div *ngFor="let msg of messages">
+            <div [ngStyle] = "{'background-color': msg.backgroundColor, 'color':msg.color}">{{msg.user}}:{{msg.message}}</div>
+        </div>
+
+        <!-- <input type="text" > -->
+        <textarea [ngStyle]="{'min-height': '100px'}" placeholder="Type message.." name="msg" required [(ngModel)]="message"></textarea>
+
+        <button class="btn btn-primary btn-sm" (click)="sendMessage()">Send</button>
+        <button  class="btn btn-light btn-sm" (click)="closeForm()">Close</button>
+    </form>
+</div>

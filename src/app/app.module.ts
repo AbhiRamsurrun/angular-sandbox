@@ -22,6 +22,8 @@ import { StarShipListComponent } from './components/starShip/list/list.component
 import { CardListTemplateComponent } from './components/shared/card-list-template/card-list-template.component';
 import { DetailsComponent } from './components/starship/details/details.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { PopupChatComponent } from './components/shared/popup-chat/popup-chat.component';
 
 
 @NgModule({
@@ -39,7 +41,9 @@ import { RegistrationComponent } from './components/user/registration/registrati
     CardListTemplateComponent,
     StarShipListComponent,
     DetailsComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ChatComponent,
+    PopupChatComponent
   ],
   imports: [
     BrowserModule,

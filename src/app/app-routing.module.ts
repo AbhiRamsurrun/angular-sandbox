@@ -10,6 +10,7 @@ import { DetailsComponent } from './components/starship/details/details.componen
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   {
@@ -24,12 +25,14 @@ const routes: Routes = [
   { path: 'users', component: ListComponent },
   { path: 'users/:id', component: RegistrationComponent, canActivate: [AuthGuard]},
   {
-    path: 'startShip', component: StarShipListComponent,
+    path: 'starShip', component: StarShipListComponent,
     children: [
       { path: ':id', component: DetailsComponent, canActivate: [RoleGuard], data:{role: 'admin' } }
     ]
   },
-  { path: 'signUp', component: RegistrationComponent }];
+  { path: 'signUp', component: RegistrationComponent },
+  { path: 'chat', component: ChatComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
